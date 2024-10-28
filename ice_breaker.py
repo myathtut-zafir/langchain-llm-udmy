@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     load_dotenv()
     print("hello langchain")
-    print(os.environ["OPENAI_API_KEY"])
+    # print(os.environ["OPENAI_API_KEY"])
     summary_template = """
     give the information {information} I want to create.
     1. a short summary
@@ -21,7 +21,8 @@ if __name__ == "__main__":
         input_variables=["information"], template=summary_template
     )
     # llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo")
-    llm = ChatOllama(model="llama3")
+    llm = ChatOllama(model="mistral")
+    # llm = ChatOllama(model="llama3")
     chain = summary_prompt_template | llm|StrOutputParser()
     res = chain.invoke(input={"information": information})
 
